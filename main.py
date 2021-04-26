@@ -11,6 +11,12 @@ soup = BeautifulSoup(data,"html5lib")
 #find all html tables in the web page
 tables = soup.find_all('table') # in html table is represented by the tag <table>
 
+# get a tabel the attributes
+r = requests.get('https://en.wikipedia.org/wiki/List_of_postal_codes_of_Canada:_M')
+soup = BeautifulSoup(r.text, 'html.parser')
+table=soup.find('table', attrs={'rules':'all'})
+print(table)
+
 #get the table index of the table we want
 for index,table in enumerate(tables):
     if ("10 most densely populated countries" in str(table)):
